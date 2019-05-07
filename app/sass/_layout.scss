@@ -16,7 +16,7 @@ body {
 
 main {
   padding-top: 3rem;
-  padding-bottom: 2rem;
+  padding-bottom: 3rem;
 }
 
 h1 {
@@ -39,8 +39,10 @@ ol,
 p,
 ul {
   font-size: 1.5rem;
+  hyphenate-limit-chars: 6 3 2;
   line-height: 1.55;
   margin-bottom: 1rem;
+  word-wrap: break-word;
 
   + h2 {
     padding-top: 2rem;
@@ -49,7 +51,26 @@ ul {
 
 ol,
 ul {
-  padding-left: 1.5rem;
+  padding-left: 2rem;
+}
+
+ol {
+  counter-reset: section;
+  list-style-type: none;
+
+  li {
+    position: relative;
+
+    &::before {
+      @include font-mono;
+      top: 1px; left: -2rem;
+
+      content: counters(section, ".") " ";
+      counter-increment: section;
+      opacity: 0.3;
+      position: absolute;
+    }
+  }
 }
 
 code {
