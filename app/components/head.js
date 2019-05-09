@@ -73,6 +73,7 @@ export default metadata => {
     "<link href='/assets/apple-touch-icon.png' rel='apple-touch-icon'/>",
     `<link href="${url}" rel="canonical"/>`,
     "<link color='#111' href='/assets/favicon.svg' rel='mask-icon'/>",
-    "<link href='/assets/favicon.svg' rel='shortcut icon'/>"
+    "<link href='/assets/favicon.svg' rel='shortcut icon'/>",
+    "<link href='/assets/css/bundle.css' rel='stylesheet'/>"
   ];
 };

@@ -12,10 +12,10 @@ body {
   @include font-sans;
   color: rgba($black, 0.95);
   overflow-x: hidden;
+  padding-top: 3rem;
 }
 
 main {
-  padding-top: 3rem;
   padding-bottom: 3rem;
 }
 
@@ -46,6 +46,16 @@ ul {
 
   + h2 {
     padding-top: 2rem;
+  }
+
+  a {
+    &:not(:visited) {
+      color: $blue;
+    }
+
+    &:visited {
+      color: $purple;
+    }
   }
 }
 
@@ -86,18 +96,11 @@ code {
 }
 
 a {
+  color: inherit;
   font-weight: 600;
-
-  &:not(:visited) {
-    color: $blue;
-  }
 
   &:hover {
     text-decoration: underline;
-  }
-
-  &:visited {
-    color: $purple;
   }
 }
 

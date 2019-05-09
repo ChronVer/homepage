@@ -9,7 +9,9 @@ import viper from "viperhtml";
 
 //  U T I L S
 
+import footer from "~component/footer";
 import head from "~component/head";
+import navigation from "~component/navigation";
 import { minifyOptions } from "~util";
 import wrapper from "~component/wrapper";
 
@@ -49,8 +51,19 @@ async function collectBody(requestObject, bodyContent) {
   if (!bodyContent)
     return [];
 
+  // TODO: Pass route to navigation
+
+  if (typeof bodyContent === "function") {
+    return [
+      await navigation(),
+      await bodyContent(requestObject),
+      footer()
+    ];
+  }
+
   return [
-    // TODO: Add navigation
-    await bodyContent(requestObject)
+    await navigation(),
+    bodyContent,
+    footer()
   ];
 }

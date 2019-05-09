@@ -14,6 +14,6 @@ const frontmatterRegex = /---.*([\s\S]+)---/g;
 export default suppliedData => {
   return {
     metadata: yaml.loadFront(suppliedData),
-    spec: suppliedData.replace(frontmatterRegex, "")
+    spec: suppliedData.replace(frontmatterRegex, "").trim()
   };
 };

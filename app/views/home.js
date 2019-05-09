@@ -36,8 +36,8 @@ export default async() => {
 
   return new Promise(resolve => readFile(specPath + "/" + currentVersion, "utf8", (err, data) => {
     if (err) { // TODO: Show error page
-      console.error(err); // eslint-disable-line no-console
-      resolve([]);
+      // console.error(err); // eslint-disable-line no-console
+      resolve("Oof owie");
     }
 
     const {

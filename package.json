@@ -8,7 +8,7 @@
     "~view": "app/views"
   },
   "author": {
-    "email": "netopwibby+chronver@thenetwork.email",
+    "email": "paul@chronver.org",
     "name": "Paul Anthony Webb"
   },
   "dependencies": {
@@ -93,5 +93,5 @@
       "app/dist"
     ]
   },
-  "version": "2019.05.07"
+  "version": "2019.05.08"
 }

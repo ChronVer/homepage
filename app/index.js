@@ -5,15 +5,15 @@
 //  I M P O R T S
 
 import chew from "chewit/fastify";
-import color from "colorette";
 import compress from "fastify-compress";
 import fastify from "fastify";
 import helmet from "fastify-helmet";
 import statik from "fastify-static";
+import style from "colorette";
 
 //  U T I L S
 
-import { isDevelopment } from "~util";
+import { isDevelopment, siteVersion } from "~util";
 import { name as appName } from "~root/package.json";
 import prepareGetRoutes from "./routes/get";
 
@@ -70,7 +70,7 @@ const start = async() => {
     process.exit(1);
   }
 
-  process.stdout.write(`\n${color.bold(appName)} is running at ${color.bold(appUrl)} in mode ${color.bold(mode)}\n\n`);
+  process.stdout.write(`\n${style.bold(appName + " v" + siteVersion)} is running at ${style.bold(appUrl)} in mode ${style.bold(mode)}\n\n`);
 };
 
 start();

@@ -6,15 +6,16 @@
 
 import { readdir } from "fs";
 
-//  I M P O R T S
+//  I M P O R T
 
 import compare from "alphabetic-compare";
-import cwd from "cwd";
 
 //  U T I L S
 
-const chronRegex = /([0-9].[0-9].+)/g;
-const specPath = cwd() + "/spec";
+import {
+  chronRegex,
+  specPath
+} from "~util";
 
 
 
@@ -41,9 +42,8 @@ function sortArray(suppliedArray) {
   suppliedArray.forEach(arrayItem => {
     const arrayItemTest = arrayItem.slice(1, -3); // remove beginning "v" and ending ".md"
 
-    if (arrayItemTest.match(chronRegex)) {
+    if (arrayItemTest.match(chronRegex))
       finalArray.push(arrayItem);
-    }
   });
 
   return finalArray.sort((a, b) => compare(a, b, "en"));

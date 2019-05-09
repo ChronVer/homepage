@@ -6,6 +6,7 @@
 
 import { handleRoute } from "~util";
 import root from "./root";
+import spec from "./spec";
 
 const defaultParams = {
   frameworkMethod: "get"
@@ -22,6 +23,12 @@ export default server => {
     ...defaultParams,
     path: "/",
     routeRules: root
+  });
+
+  handleRoute({
+    ...defaultParams,
+    path: "/spec/:specId",
+    routeRules: spec
   });
 
   // 404 handler
