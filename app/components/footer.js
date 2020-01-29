@@ -13,7 +13,7 @@ import { siteRepo, siteVersion } from "~util";
 export default () => {
   return [
     "<footer class='footer inner-wrap'>",
-    `v${siteVersion} | <a href='${siteRepo}' title='View the source of this website'>Source</a>`,
+    `site version ${siteVersion} | <a href='${siteRepo}' title='View the source of this website'>source</a>`,
     "</footer>"
   ].join("");
 };

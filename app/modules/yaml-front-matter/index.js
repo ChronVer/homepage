@@ -17,12 +17,13 @@ const yamlRegex = /^(-{3}(?:\n|\r)([\w\W]+?)(?:\n|\r)-{3})?([\w\W]*)*/;
 
 jsYaml.parse = text => {
   const results = text.match(yamlRegex);
-  let conf, yamlOrJson;
+  const yamlOrJson = results[2]; // yamlOrJson = results.input;
+  let conf;
 
-  yamlOrJson = results[2]; // yamlOrJson = results.input;
-
-  if (yamlOrJson.charAt(0) === "{") conf = JSON.parse(yamlOrJson);
-  else conf = jsYaml.load(yamlOrJson);
+  if (yamlOrJson.charAt(0) === "{")
+    conf = JSON.parse(yamlOrJson);
+  else
+    conf = jsYaml.load(yamlOrJson);
 
   return conf;
 };
@@ -33,7 +34,10 @@ jsYaml.loadFront = context => {
   switch(true) {
     case fs.existsSync(context):
       contents = fs.readFileSync(context, "utf8");
-      if (contents instanceof Error) return contents;
+
+      if (contents instanceof Error)
+        return contents;
+
       return jsYaml.parse(contents);
 
     case Buffer.isBuffer(context):
