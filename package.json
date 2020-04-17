@@ -39,6 +39,7 @@
     "@inc/eslint-config": "^2019.10.22",
     "@inc/sasslint-config": "^2019.11.29",
     "alphabetic-compare": "^1.1.4",
+    "chronver": "^2020.4.16",
     "colorette": "^1.1.0",
     "cwd": "^0.10.0",
     "eslint": "^6.8.0",
@@ -63,11 +64,11 @@
   "homepage": "https://chronver.org",
   "husky": {
     "hooks": {
-      "pre-commit": "npm run format && npm run test:sass && git add -A :/"
+      "pre-commit": "npm run format && npm run test:sass && npm run increment && git add -A :/"
     }
   },
   "main": "index.js",
-  "name": "chronver.org",
+  "name": "@chronver/homepage",
   "private": true,
   "repository": {
     "type": "git",
@@ -77,6 +78,7 @@
     "css": "sass --load-path=node_modules --update app/sass:app/dist/css --style compressed",
     "deploy": "vagrant push",
     "format": "eslint . --fix --ignore-pattern '/app/dist/'",
+    "increment": "chronver --increment package",
     "postinstall": "link-module-alias",
     "preinstall": "command -v link-module-alias;link-module-alias clean || true",
     "start": "export NODE_ENV=production;npm i;npm run css;node index.js",
@@ -93,5 +95,5 @@
       "app/dist"
     ]
   },
-  "version": "2019.09.19"
+  "version": "2020.04.17"
 }
