@@ -8,21 +8,21 @@
     "~view": "app/views"
   },
   "author": {
-    "email": "paul@chronver.org",
-    "name": "Paul Anthony Webb"
+    "name": "Paul Anthony Webb",
+    "url": "https://chronver.org"
   },
   "dependencies": {
     "chewit": "^2019.7.23",
-    "fastify": "2.11.0",
-    "fastify-compress": "^2.0.0",
+    "fastify": "2.13.1",
+    "fastify-compress": "^2.0.1",
     "fastify-helmet": "^3.0.2",
     "fastify-static": "^2.6.0",
-    "marked": "^0.8.0"
+    "marked": "^0.8.2"
   },
   "description": "Chronologic Versioning spec and website",
   "devDependencies": {
-    "@babel/cli": "^7.8.3",
-    "@babel/core": "^7.8.3",
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.0",
     "@babel/plugin-external-helpers": "7.8.3",
     "@babel/plugin-proposal-class-properties": "7.8.3",
     "@babel/plugin-proposal-decorators": "7.8.3",
@@ -33,9 +33,9 @@
     "@babel/plugin-proposal-throw-expressions": "7.8.3",
     "@babel/plugin-syntax-dynamic-import": "7.8.3",
     "@babel/plugin-syntax-import-meta": "7.8.3",
-    "@babel/polyfill": "^7.8.3",
-    "@babel/preset-env": "^7.8.3",
-    "@babel/register": "^7.8.3",
+    "@babel/polyfill": "^7.8.7",
+    "@babel/preset-env": "^7.9.5",
+    "@babel/register": "^7.9.0",
     "@inc/eslint-config": "^2019.10.22",
     "@inc/sasslint-config": "^2019.11.29",
     "alphabetic-compare": "^1.1.4",
@@ -44,17 +44,17 @@
     "eslint": "^6.8.0",
     "graceful-fs": "^4.2.3",
     "html-minifier": "^4.0.0",
-    "husky": "^4.2.1",
+    "husky": "^4.2.5",
     "js-yaml": "^3.13.1",
     "link-module-alias": "^1.2.0",
-    "nodemon": "^2.0.2",
+    "nodemon": "^2.0.3",
     "npm-run-all": "^4.1.5",
-    "pino-pretty": "^3.5.0",
-    "sass": "^1.25.1-test.1",
+    "pino-pretty": "^4.0.0",
+    "sass": "^1.26.3",
     "sass-lint": "^1.13.1",
     "snazzy": "^8.0.0",
     "standardx": "^5.0.0",
-    "updates": "^9.3.3",
+    "updates": "^10.2.7",
     "viperhtml": "^2.17.1"
   },
   "engines": {
@@ -71,7 +71,7 @@
   "private": true,
   "repository": {
     "type": "git",
-    "url": "git+https://code.webb.page/ChronVer/chronver.org.git"
+    "url": "git+https://github.com/ChronVer/homepage.git"
   },
   "scripts": {
     "css": "sass --load-path=node_modules --update app/sass:app/dist/css --style compressed",
