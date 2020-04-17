@@ -7,7 +7,7 @@ To get started using ChronVer in your projects, you have these useful modules to
 ### Node.js
 
 - https://www.npmjs.com/package/chronver
-- https://www.npmjs.com/package/chronver-regex
+- https://www.npmjs.com/package/@chronver/regex
 
 ### Rust
 
