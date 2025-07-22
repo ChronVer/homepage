@@ -1,17 +1,3 @@
-# OS garbage
+# OS artefacts
 .DS_Store
 Thumbs.db
-
-
-
-# Files
-*.css
-*.map
-*.lock
-package-lock.json
-
-
-
-# Folders
-.sass-cache
-node_modules
