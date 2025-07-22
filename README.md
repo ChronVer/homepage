@@ -1,12 +1,10 @@
-# ChronVer.org
 
-This is the site at [https://chronver.org](https://chronver.org) that describes the Chronologic Versioning specification.
+![](banner.png "ChronVer banner")
 
+**ChronVer (Chronological Versioning) is calendar-based versioning.** In the age of rapid software releases, knowing _when_ something released is more important than arbitrary numbers from an outdated versioning system that most people never adhere to anyway. Finally, versioning for the rest of us.
 
+---
 
-## Running locally
+This repo contains the homepage of [https://chronver.org](https://chronver.org).
 
-1. Install the latest [Node](https://nodejs.org/en/download/current)
-1. Install dependencies: `npm i`
-1. Run the site: `npm run watch`
-1. Visit `http://localhost:4000`
+Find the module and CLI on [JSR](https://jsr.io/@chronver/chronver) or [Github](https://github.com/ChronVer/chronver).

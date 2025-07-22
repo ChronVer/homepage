@@ -1,0 +1,545 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="description" content="ChronVer (Chronological Versioning) is calendar-based versioning, for the rest of us."/>
+    <meta name="title" content="ChronVer • Versioning for the rest of us"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <meta property="og:description" content="ChronVer (Chronological Versioning) is calendar-based versioning, for the rest of us."/>
+    <meta property="og:image" content="./banner.png"/>
+    <meta property="og:image:height" content="400"/>
+    <meta property="og:image:width" content="1200"/>
+    <meta property="og:site_name" content="ChronVer"/>
+    <meta property="og:title" content="ChronVer"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="https://chronver.org"/>
+
+    <title>ChronVer &bull; Versioning for the rest of us</title>
+
+    <link rel="canonical" href="https://chronver.org"/>
+    <link rel="mask-icon" href="favicon.svg" color="#111"/>
+    <link rel="shortcut icon" href="favicon.svg"/>
+
+    <link href="https://uchu.style/color_expanded.css" rel="stylesheet"/>
+
+    <style>
+      *, *::before, *::after {
+        margin: 0; padding: 0;
+        box-sizing: inherit;
+      }
+
+      html, body {
+        width: 100%; height: 100%;
+      }
+
+      html {
+        box-sizing: border-box;
+
+        @media (min-width: 601px) {
+          font-size: 16px;
+        }
+
+        @media (max-width: 600px) {
+          font-size: 13px;
+        }
+      }
+
+      body {
+        align-items: center;
+        background-color: var(--uchu-yang);
+        color: var(--uchu-yin);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        line-height: 1.33;
+        margin-left: auto;
+        margin-right: auto;
+        padding-bottom: 2rem;
+        max-width: 700px;
+
+        @media (min-width: 801px) {
+          margin-top: 2rem;
+        }
+
+        @media (max-width: 800px) {
+          margin-top: 1rem;
+          padding-right: 1rem;
+          padding-left: 1rem;
+        }
+      }
+
+      header {
+        width: 100%; height: 100%;
+
+        background-image: url("banner.png");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        border-bottom-right-radius: 1rem;
+        border-top-left-radius: 1rem;
+
+        @media (min-width: 601px) {
+          max-height: 200px;
+        }
+
+        @media (max-width: 600px) {
+          max-height: 150px;
+        }
+      }
+
+      h1, h2 {
+        color: transparent;
+        font-size: 0;
+        line-height: 0;
+      }
+
+      h3 {
+        margin-bottom: 1rem;
+      }
+
+      .compare {
+        display: flex;
+        flex-direction: row;
+        list-style-type: none;
+        text-align: center;
+        width: 100%;
+
+        li {
+          padding: 1rem;
+          position: relative;
+          width: 50%;
+
+          &.tired {
+            &::after {
+              width: 3px; height: 100%;
+              bottom: 0; right: -1.5px;
+
+              background-color: var(--uchu-pink-1);
+              content: "";
+              position: absolute;
+            }
+
+            .title {
+              color: var(--uchu-gray-5);
+            }
+
+            .version {
+              color: var(--uchu-gray-7);
+            }
+          }
+
+          &.wired {
+            .title {
+              color: var(--uchu-pink-5);
+            }
+          }
+
+          .title {
+            font-size: 80%;
+            font-weight: 600;
+            letter-spacing: 0.1rem;
+            text-transform: uppercase;
+          }
+
+          .question {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            margin-top: 0.5rem;
+          }
+        }
+      }
+
+      .links {
+        background-color: var(--uchu-pink-1);
+        padding: 1rem;
+
+        ul {
+          align-items: center;
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          list-style: none;
+
+          li {
+            &:first-child {
+              svg {
+                inline-size: 4rem;
+              }
+            }
+
+            &:not(:last-child) {
+              margin-right: 2rem;
+            }
+
+            &:last-child {
+              svg {
+                inline-size: 3rem;
+              }
+            }
+          }
+        }
+
+        a {
+          display: flex;
+        }
+      }
+
+      section {
+        border-top: 3px solid var(--uchu-pink-1);
+        width: 100%;
+
+        &:not(.links) {
+          padding-bottom: 2rem;
+          padding-top: 2rem;
+        }
+      }
+
+      pre {
+        background-color: var(--uchu-yellow-1);
+        border-bottom-right-radius: 1rem;
+        border-top-left-radius: 1rem;
+        padding-left: 1rem;
+      }
+
+      code {
+        font-family: "Berkeley Mono", "Fira Code", monospace;
+      }
+
+      table {
+        border: 1px solid var(--uchu-gray-3);
+        border-spacing: 0;
+        width: 100%;
+
+        code {
+          position: relative;
+          white-space: nowrap;
+
+          &::after {
+            width: calc(100% + 10px); height: calc(100% + 6px);
+            bottom: -3px; left: -5px;
+
+            background-color: oklch(var(--uchu-yin-5-raw) / 10%);
+            border-bottom-right-radius: 0.25rem;
+            border-top-left-radius: 0.25rem;
+            content: "";
+            position: absolute;
+          }
+        }
+
+        thead th {
+          border-bottom: 1px solid var(--uchu-gray-3);
+          text-align: left;
+        }
+
+        th, td {
+          padding: 0.5rem 1rem;
+        }
+
+        tbody {
+          tr:nth-child(odd) {
+            background-color: var(--uchu-gray-1);
+          }
+        }
+
+        tbody td {
+          position: relative;
+
+          &::after {
+            width: 100%; height: 1px;
+            bottom: -1px; left: 0;
+
+            background-color: var(--uchu-gray-3);
+            content: "";
+            position: absolute;
+          }
+        }
+      }
+
+      details {
+        border: 1px solid var(--uchu-gray-3);
+        padding: 1rem 1.25rem;
+        position: relative;
+
+        &:nth-of-type(2) {
+          transform: translateY(-1px);
+        }
+
+        &:nth-of-type(3) {
+          transform: translateY(-2px);
+        }
+
+        &:nth-of-type(4) {
+          transform: translateY(-3px);
+        }
+
+        &[open] {
+          background-color: var(--uchu-gray-1);
+
+          summary {
+            margin-bottom: 0.5rem;
+          }
+        }
+
+        summary {
+          cursor: pointer;
+        }
+
+        pre {
+          margin-bottom: 1rem;
+          margin-top: 1rem;
+        }
+      }
+
+      a {
+        color: var(--uchu-blue-4);
+
+        &:visited {
+          color: var(--uchu-pink-7);
+        }
+      }
+
+      p, ol {
+        code {
+          position: relative;
+
+          &::after {
+            width: calc(100% + 4px); height: calc(100% + 2px);
+            bottom: -1px; left: -1px;
+
+            background-color: oklch(var(--uchu-yin-5-raw) / 10%);
+            border-bottom-right-radius: 0.25rem;
+            border-top-left-radius: 0.25rem;
+            content: "";
+            position: absolute;
+          }
+        }
+      }
+
+      ol {
+        @media (min-width: 601px) {
+          padding-left: 1.08rem;
+        }
+
+        @media (max-width: 600px) {
+          padding-left: 1.5rem;
+        }
+      }
+
+      footer {
+        border-top: 3px solid var(--uchu-pink-1);
+        padding-top: 1rem;
+        text-align: center;
+
+        @media (min-width: 801px) {
+          padding-bottom: 3rem;
+        }
+
+        @media (max-width: 800px) {
+          padding-bottom: 1rem;
+        }
+
+        ul {
+          list-style-type: none;
+
+          li {
+            display: inline-block;
+          }
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <h1>ChronVer</h1>
+      <h2>Versioning for the rest of us</h2>
+    </header>
+
+    <ul class="compare">
+      <li class="tired">
+        <div class="title">Tired</div>
+        <div class="question">When did this release?</div>
+        <div class="version">v3.2.1</div>
+      </li>
+
+      <li class="wired">
+        <div class="title">Wired</div>
+        <div class="question">Obvious release day</div>
+        <div class="version" id="today">2025.07.15</div>
+      </li>
+    </ul>
+
+    <section class="links">
+      <ul>
+        <li>
+          <a href="https://jsr.io/@chronver/chronver?ref=chronver.org" target="_blank">
+            <svg viewBox="0 0 13 7" aria-hidden="true">
+              <path d="M0 2h2v-2h7v1h4v4h-2v2h-7v-1h-4" fill="#083344"></path>
+
+              <g fill="#f7df1e">
+                <path d="M1 3h1v1h1v-3h1v4h-3"></path>
+                <path d="M5 1h3v1h-2v1h2v3h-3v-1h2v-1h-2"></path>
+                <path d="M9 2h3v2h-1v-1h-1v3h-1"></path>
+              </g>
+            </svg>
+          </a>
+        </li>
+
+        <li>
+          <a href="https://github.com/ChronVer/chronver?ref=chronver.org" target="_blank">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 1C5.923 1 1 5.923 1 12c0 4.867 3.149 8.979 7.521 10.436.55.096.756-0.233.756-0.522 0-0.262-0.013-1.128-0.013-2.049-2.764.509-3.479-0.674-3.699-1.292-0.124-0.317-0.66-1.293-1.127-1.554-0.385-0.207-0.936-0.715-0.014-0.729.866-0.014 1.485.797 1.691 1.128.99 1.663 2.571 1.196 3.204.907.096-0.715.385-1.196.701-1.471-2.448-0.275-5.005-1.224-5.005-5.432 0-1.196.426-2.186 1.128-2.956-0.111-0.275-0.496-1.402.11-2.915 0 0 .921-0.288 3.024 1.128a10.193 10.193 0 0 1 2.75-0.371c.936 0 1.871.123 2.75.371 2.104-1.43 3.025-1.128 3.025-1.128.605 1.513.221 2.64.111 2.915.701.77 1.127 1.747 1.127 2.956 0 4.222-2.571 5.157-5.019 5.432.399.344.743 1.004.743 2.035 0 1.471-0.014 2.654-0.014 3.025 0 .289.206.632.756.522C19.851 20.979 23 16.854 23 12c0-6.077-4.922-11-11-11Z"></path>
+            </svg>
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h3>Format</h3>
+
+      <pre><code>
+YYYY.MM.DD[.CHANGESET][-FEATURE|-break]
+      </code></pre>
+    </section>
+
+    <section>
+      <h3>Examples</h3>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Version</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td><code>2025.07.21</code></td>
+            <td>Released July 21st, 2025</td>
+          </tr>
+
+          <tr>
+            <td><code>2025.07.21.1</code></td>
+            <td>First hotfix that day</td>
+          </tr>
+
+          <tr>
+            <td><code>2025.07.21.3</code></td>
+            <td>Third change that day</td>
+          </tr>
+
+          <tr>
+            <td><code>2025.07.21-feature</code></td>
+            <td>Feature branch for that date</td>
+          </tr>
+
+          <tr>
+            <td><code>2025.07.21.1-feature</code></td>
+            <td>Feature branch with changeset</td>
+          </tr>
+
+          <tr>
+            <td><code>2025.07.21.1-break</code></td>
+            <td>Breaking change</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h3>FAQ</h3>
+
+      <details name="questions" open>
+        <summary>Why not just use dates?</summary>
+        <p>ChronVer <strong>is</strong> dates, but with a structured format that supports multiple releases per day, feature branches, and breaking change indicators.</p>
+      </details>
+
+      <details name="questions">
+        <summary>What about semantic compatibility?</summary>
+        <p>ChronVer can indicate breaking changes with the <code>-break</code> suffix. For situations where semantic versioning is <strong>crucial</strong>, stick with SemVer.</p>
+      </details>
+
+      <details name="questions">
+        <summary>How do I migrate from SemVer?</summary>
+        <ol>
+          <li>Choose your first ChronVer date (usually next release)</li>
+          <li>Update your build tools to use <code>chronver increment</code></li>
+          <li>Update documentation to explain the new format</li>
+          <li>Consider keeping a mapping in your <code>CHANGELOG</code></li>
+        </ol>
+      </details>
+
+      <details name="questions">
+        <summary>Can I use both ChronVer and SemVer?</summary>
+        <p>Absolutely! Here's how your project could use ChronVer for releases and SemVer for API versions:</p>
+        <pre><code>
+{
+  "apiVersion": "v2.1.0",
+  "version": "2024.07.19.1"
+}
+        </code></pre>
+        <p>Easy-peasy.</p>
+      </details>
+    </section>
+
+    <section>
+      <h3>Comparison with SemVer</h3>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Aspect</th>
+            <th>ChronVer</th>
+            <th>SemVer</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td><strong>Clarity</strong></td>
+            <td>Immediately shows when released</td>
+            <td>Requires lookup</td>
+          </tr>
+
+          <tr>
+            <td><strong>Planning</strong></td>
+            <td>Aligns with calendar schedules</td>
+            <td>Feature-driven</td>
+          </tr>
+
+          <tr>
+            <td><strong>Communication</strong></td>
+            <td>"The April release"</td>
+            <td>"Version 3.2.1"</td>
+          </tr>
+
+          <tr>
+            <td><strong>Sorting</strong></td>
+            <td>Chronological by default</td>
+            <td>Arbitrary without context</td>
+          </tr>
+
+          <tr>
+            <td><strong>Compatibility</strong></td>
+            <td>Time-based breaking changes</td>
+            <td>API contract based</td>
+          </tr>
+
+          <tr>
+            <td><strong>Best for</strong></td>
+            <td>Time-sensitive releases</td>
+            <td>Library compatibility</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <footer>
+      <a href="https://jsr.io/@chronver/chronver?ref=chronver.org" target="_blank">JSR</a> &bull;
+      <a href="https://creativecommons.org/licenses/by/4.0?ref=chronver.org" target="_blank">Creative Commons ― CC BY 4.0</a> &bull;
+      <a href="https://github.com/ChronVer/chronver?ref=chronver.org" target="_blank">Github</a>
+    </footer>
+  </body>
+</html>
