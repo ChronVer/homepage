@@ -3,6 +3,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8"/>
+
     <meta name="description" content="ChronVer (Chronological Versioning) is calendar-based versioning, for the rest of us."/>
     <meta name="title" content="ChronVer • Versioning for the rest of us"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -347,6 +348,55 @@
         }
       }
     </style>
+
+    <script>
+      //// util
+
+      const now = new Date();
+
+      const version = [
+        now.getFullYear(),
+        ".",
+        String(now.getMonth() + 1).padStart(2, "0"),
+        ".",
+        String(now.getDate()).padStart(2, "0")
+      ].join("");
+
+
+
+      //// helper
+
+      function getOrdinalSuffix(day) {
+        if (day > 3 && day < 21)
+          return "th";
+
+        switch(day % 10) {
+          case 1: {
+            return "st";
+          }
+
+          case 2: {
+            return "nd";
+          }
+
+          case 3: {
+            return "rd";
+          }
+
+          default: {
+            return "th";
+          }
+        }
+      }
+
+      function formatDateWithOrdinal(date) {
+        const month = date.toLocaleString("en-us", { month: "long" });
+        const day = date.getDate();
+        const year = date.getFullYear();
+
+        return `${month} ${day}${getOrdinalSuffix(day)}, ${year}`;
+      }
+    </script>
   </head>
 
   <body>
@@ -365,7 +415,7 @@
       <li class="wired">
         <div class="title">Wired</div>
         <div class="question">Obvious release day</div>
-        <div class="version" id="today">2025.07.15</div>
+        <div class="version" id="today"><span class="today">2025.07.15</span></div>
       </li>
     </ul>
 
@@ -416,32 +466,32 @@ YYYY.MM.DD[.CHANGESET][-FEATURE|-break]
 
         <tbody>
           <tr>
-            <td><code>2025.07.21</code></td>
-            <td>Released July 21st, 2025</td>
+            <td><code><span class="today">2025.07.21</span></code></td>
+            <td>Released <span class="today_fancy">July 21st, 2025</span></td>
           </tr>
 
           <tr>
-            <td><code>2025.07.21.1</code></td>
-            <td>First hotfix that day</td>
+            <td><code><span class="today">2025.07.21</span>.1</code></td>
+            <td>First hotfix today</td>
           </tr>
 
           <tr>
-            <td><code>2025.07.21.3</code></td>
-            <td>Third change that day</td>
+            <td><code><span class="today">2025.07.21</span>.3</code></td>
+            <td>Third change today</td>
           </tr>
 
           <tr>
-            <td><code>2025.07.21-feature</code></td>
-            <td>Feature branch for that date</td>
+            <td><code><span class="today">2025.07.21</span>-feature</code></td>
+            <td>Feature branch made today</td>
           </tr>
 
           <tr>
-            <td><code>2025.07.21.1-feature</code></td>
+            <td><code><span class="today">2025.07.21</span>.1-feature</code></td>
             <td>Feature branch with changeset</td>
           </tr>
 
           <tr>
-            <td><code>2025.07.21.1-break</code></td>
+            <td><code><span class="today">2025.07.21</span>.1-break</code></td>
             <td>Breaking change</td>
           </tr>
         </tbody>
@@ -477,7 +527,7 @@ YYYY.MM.DD[.CHANGESET][-FEATURE|-break]
         <pre><code>
 {
   "apiVersion": "v2.1.0",
-  "version": "2024.07.19.1"
+  "version": "<span class="today">2024.07.19</span>.1"
 }
         </code></pre>
         <p>Easy-peasy.</p>
@@ -541,5 +591,10 @@ YYYY.MM.DD[.CHANGESET][-FEATURE|-break]
       <a href="https://creativecommons.org/licenses/by/4.0?ref=chronver.org" target="_blank">Creative Commons ― CC BY 4.0</a> &bull;
       <a href="https://github.com/ChronVer/chronver?ref=chronver.org" target="_blank">Github</a>
     </footer>
+
+    <script>
+      Array.from(document.querySelectorAll(".today")).map(element => { element.innerText = version; });
+      document.querySelector(".today_fancy").innerText = formatDateWithOrdinal(now);
+    </script>
   </body>
 </html>
